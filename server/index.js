@@ -4,7 +4,7 @@ const massive = require('massive')
 
 const { SERVER_PORT, CONNECTION_STRING } = process.env
 
-
+const ctrl = require('./controller')
 
 const app = express()
 
@@ -15,6 +15,12 @@ massive(CONNECTION_STRING).then(db => {
     console.log('Connecting to db...')
 })
 
+
+app.get('/api/houses', ctrl.getAllHouses)
+
+app.post('/api/house', ctrl.createHouse)
+
+app.delete('/api/house/:id', ctrl.deleteHouse)
 
 
 
